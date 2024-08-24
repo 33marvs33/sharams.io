@@ -3,7 +3,6 @@ const Router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const userdata = require("../models/users");
-const e = require("express");
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -16,7 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-Router.get("/home", async (req, res) => {
+Router.get("/", async (req, res) => {
 	try {
 		const users = await userdata.find();
 		res.render("home", { users });
@@ -99,23 +98,21 @@ Router.post("/new", upload.array("img", 10), async (req, res) => {
 		others: data.others,
 		textarea: data.textarea,
 		img: imagePaths,
-		// dateCreated: new Date().toLocaleDateString(),
-		// dateUpdated: ""
 	});
 
 	try {
 		if (user.advance > user.price) {
 			// If price is less than advance, re-render the form with an error message
 			res.send("error price must be higher than advance");
-			res.render("create", { user });
+			res.redirect("/create", { user });
 			return;
 		}
 
 		await user.save();
-		res.redirect("/home");
+		res.redirect("/");
 	} catch (error) {
 		console.error(error);
-		res.redirect("create", { user });
+		res.redirect("/create", { user });
 		res.status(500).send("Internal Server Error");
 	}
 });
@@ -139,7 +136,7 @@ Router.post("/update/:id", upload.array("img", 10), async (req, res) => {
 			// dateCreated: new Date().toLocaleDateString(),
 		});
 		console.log("successfuly updated");
-		res.redirect("/home");
+		res.redirect("/");
 	} catch (error) {
 		console.error(error);
 	}
@@ -149,7 +146,7 @@ Router.get("/delete/:id", async (req, res) => {
 	try {
 		await userdata.findByIdAndDelete(req.params.id);
 		console.log(`deleted successfully`);
-		res.redirect("/home");
+		res.redirect("/");
 	} catch (error) {
 		console.error(error);
 	}
