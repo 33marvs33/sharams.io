@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>User Info</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="/styles/global.css" />
+		<link rel="stylesheet" href="/styles/info.css" />
+	</head>
+	<body>
+		<div class="info_container">
+			<div class="main_info">
+				<div class="buttons">
+					<div class="edit_button" data-id="<%= user._id  %>">
+						<i class="fa-solid fa-user-pen"></i>
+					</div>
+					<div class="delete_button" data-id="<%= user._id  %>">
+						<i class="fa-solid fa-trash"></i>
+
+						<div class="confirm hide">
+							<span class="confirmation yes">YES</span>
+							<span class="confirmation no">NO</span>
+						</div>
+					</div>
+					<div class="back_button">
+						<i class="fa-solid fa-rectangle-xmark"></i>
+					</div>
+				</div>
+
+				<div class="top_info">
+					<p>User ID: <%= user._id %></p>
+					<p>Name: <%= user.name %></p>
+					<p>Location: <%= user.location %></p>
+					<p>Balance: ₱<%= user.balance %></p>
+					<p>Status: <%= user.status %></p>
+					<p>Profession: <%= user.profession %></p>
+					<p>Others: <%= user.others %></p>
+					<p>Date Created: <%= user.createdAt %></p>
+					<p>Date Updated: <%= user.updatedAt%></p>
+
+					<textarea name="textarea" class="textarea" id="textarea" readonly>
+<%= user.textarea %></textarea
+					>
+				</div>
+
+				<% if (user.img && user.img.length > 0) { %>
+				<div class="images">
+					<% user.img.forEach(image => { %>
+					<img src="<%= image %>" alt="User Image" />
+					<% }) %>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	</body>
+	<script>
+		const back_button = document.querySelector(".back_button");
+		const edit_button = document.querySelector(".edit_button");
+		const delete_button = document.querySelector(".delete_button");
+		back_button.addEventListener("click", (e) => {
+			e.preventDefault();
+			window.location.href = "/home";
+		});
+		edit_button.addEventListener("click", (e) => {
+			e.preventDefault();
+			const userId = edit_button.dataset.id;
+			window.location.href = `/edit/${userId}`;
+		});
+
+		delete_button.addEventListener("click", (e) => {
+			e.preventDefault();
+			const deletedId = delete_button.dataset.id;
+			const confirm = document.querySelector(".confirm");
+			const yesNo = document.querySelectorAll(".confirmation");
+			const yesButton = document.querySelector(".confirmation.yes");
+			const noButton = document.querySelector(".confirmation.no");
+
+			confirm.classList.add("pop");
+
+			yesButton.addEventListener("click", (e) => {
+				e.preventDefault();
+				const deletedId = delete_button.dataset.id;
+				// Redirect to the delete route
+				window.location.href = `/delete/${deletedId}`;
+			});
+
+			noButton.addEventListener("click", (e) => {
+				e.preventDefault();
+				// Hide the confirmation box without any other actions
+				confirm.classList.add("hide");
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,131 @@
+:root {
+	--bg-color: #caf4ff;
+	--cards-color: #ffb200;
+	--create-color: #399918;
+	--delete-color: #ff4c4c;
+	--update-color: #36c2ce;
+}
+
+.form_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+}
+.form {
+	background-color: var(--cards-color);
+	padding: 2rem 1rem;
+	border-radius: 10px;
+	width: 80vw;
+	max-width: 500px;
+	box-shadow: 5px 10px 3px var(--delete-color);
+	max-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: relative;
+}
+.back_button {
+	padding: 0.5rem;
+	font-size: 2rem;
+	color: #ff4c4c;
+	font-weight: 800;
+	cursor: pointer;
+}
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	padding: 0.2rem 0rem;
+	top: -32px;
+	left: 0;
+	background-color: var(--cards-color);
+}
+.form h1 {
+	color: purple;
+	text-shadow: 3px 3px 2px var(--create-color);
+}
+.form_inputs {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.user_info input {
+	padding: 0.5rem;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	width: 100%;
+}
+
+.user_info label {
+	font-weight: 600;
+	color: gray;
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.professions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	margin-block: 0.7rem;
+}
+.selection {
+	display: flex;
+	gap: 10px;
+}
+.selection label {
+	font-weight: 700;
+	color: brown;
+	cursor: pointer;
+}
+.selection input {
+	cursor: pointer;
+}
+.others {
+	margin: 0 auto;
+	border: none;
+	padding: 0.2rem 0.4rem;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.textarea {
+	margin-top: 1rem;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 200px;
+	max-height: 200px !important;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	padding: 1rem;
+	font-family: inherit;
+}
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.save_button {
+	background-color: var(--create-color);
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	color: var(--cards-color);
+	font-weight: 700;
+	border-radius: 5px;
+	border: none;
+}
+
+@media (max-width: 650px) {
+	.user_info {
+		width: 100%;
+	}
+}

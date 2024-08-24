@@ -1,0 +1,127 @@
+:root {
+	--bg-color: #caf4ff;
+	--cards-color: #ffb200;
+	--create-color: #399918;
+	--delete-color: #ff4c4c;
+	--update-color: #36c2ce;
+}
+body {
+	overflow: hidden;
+}
+
+.info_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+.main_info {
+	background-color: var(--cards-color);
+	box-shadow: 7px 10px 8px var(--delete-color);
+	border-radius: 10px;
+	padding: 1.5rem;
+	min-width: 300px;
+	width: 500px;
+	max-width: 600px;
+	max-height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.top_info p {
+	padding: 5px 3px;
+	border-radius: 5px;
+	text-transform: capitalize;
+}
+.top_info p:nth-child(even) {
+	background-color: var(--bg-color);
+}
+.top_info p:nth-child(odd) {
+	background-color: var(--create-color);
+}
+.textarea {
+	margin-top: 0.5rem;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 200px;
+	max-height: 200px !important;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	padding: 1rem;
+}
+.buttons {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: flex;
+	align-items: center;
+}
+.buttons i {
+	font-weight: 800;
+	cursor: pointer;
+	transition: all 0.35s ease;
+	padding: 0.5rem;
+	font-size: 1.3rem;
+}
+.buttons i:hover {
+	transform: scale(1.5);
+}
+.back_button {
+	color: purple;
+}
+
+.hide {
+	transform: translateX(1000%);
+}
+.pop {
+	transform: translateX(0%);
+}
+
+.confirm {
+	position: absolute;
+	right: 0;
+	background-color: #ffb200;
+	padding: 5px;
+	border-radius: 2px;
+	display: flex;
+	gap: 20px;
+	transition: all.25s ease;
+}
+.confirmation {
+	font-size: 0.8rem;
+	font-weight: 700;
+	cursor: pointer;
+	display: inline-block;
+}
+.yes {
+	color: #ff4c4c;
+}
+.no {
+	color: var(--create-color);
+}
+
+.delete_button {
+	color: var(--delete-color);
+}
+.edit_button {
+	color: var(--create-color);
+}
+
+p {
+	font-weight: 600;
+	margin-top: 0.5rem;
+}
+.images {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	gap: 0.5rem;
+	margin-top: 2rem;
+	overflow-y: auto;
+}
+.images img {
+	width: 100%;
+	min-height: 150px;
+	max-height: 150px;
+	object-fit: cover;
+	border-radius: 5px;
+}

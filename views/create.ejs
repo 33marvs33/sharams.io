@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="/styles/global.css" />
+		<link rel="stylesheet" href="/styles/create.css" />
+		<title>CREATE | PAGE</title>
+	</head>
+	<body>
+		<div class="form_container">
+			<form
+				class="form"
+				action="/new"
+				method="post"
+				enctype="multipart/form-data"
+			>
+				<div class="title">
+					<h1>Create User</h1>
+					<div class="back_button" title="close">x</div>
+				</div>
+
+				<%- include('_form.ejs') %>
+
+				<div class="buttons">
+					<!-- <button class="close_button">close</button> -->
+
+					<input type="submit" class="save_button" value="save" />
+				</div>
+			</form>
+		</div>
+	</body>
+	<script>
+		const back_button = document.querySelector(".back_button");
+		back_button.addEventListener("click", (e) => {
+			e.preventDefault();
+			window.location.href = "/home";
+		});
+	</script>
+</html>

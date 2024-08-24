@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="/styles/global.css" />
+		<link rel="stylesheet" href="/styles/home.css" />
+		<title>HOMEPAGE</title>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<a href="#" class="logo">sharam's</a>
+
+				<input
+					type="text"
+					class="search_input search"
+					placeholder="enter id/name"
+				/>
+
+				<input
+					type="text"
+					class="overlay_searchInput search hidden"
+					placeholder="enter id/name"
+					au
+				/>
+
+				<nav>
+					<a href="#" id="search">
+						<i class="fa-solid fa-magnifying-glass search_icon"></i>
+					</a>
+					<!-- <a href="#"><i class="fa-solid fa-bars menu"></i></a> -->
+					<a href="/create"><i class="fa-solid fa-plus create"></i></a>
+
+					<!-- <a href="#"><i class="fa-solid fa-x close"></i></a> -->
+				</nav>
+			</header>
+
+			<!-- main -->
+			<main>
+				<% users.forEach(data => { %>
+				<div class="cards_container" data-id="<%= data._id %>">
+					<p class="id"><%= data._id%></p>
+					<p class="name"><%= data.name %></p>
+					<p class="location"><%= data.location %></p>
+					<p class="date"><%= data.createdAt %></p>
+				</div>
+
+				<% }) %>
+			</main>
+
+			<!-- end main -->
+		</div>
+		<div class="overlay hidden"></div>
+	</body>
+
+	<script>
+		const cards_container = document.querySelectorAll(".cards_container");
+		const searchInput = document.querySelectorAll(".search");
+		searchInput.forEach((inputs) => {
+			inputs.addEventListener("input", (e) => {
+				filterCards(e.target.value);
+			});
+		});
+
+		function filterCards(query) {
+			query = query.toLowerCase();
+			cards_container.forEach((card) => {
+				const userId = card.querySelector(".id").textContent.toLowerCase();
+				const userName = card.querySelector(".name").textContent.toLowerCase();
+
+				// Check if the card matches the query
+				if (userId.includes(query) || userName.includes(query)) {
+					card.style.display = "block"; // Show matching card
+				} else {
+					card.style.display = "none"; // Hide non-matching card
+				}
+			});
+		}
+
+		const secondary_search = document.querySelector(".search_icon");
+		secondary_search.addEventListener("click", () => {
+			const overlay_search = document.querySelector(".overlay_searchInput");
+			const overlay_shadow = document.querySelector(".overlay");
+			if (window.innerWidth <= 768) {
+				overlay_search.classList.remove("hidden");
+				overlay_shadow.classList.remove("hidden");
+				overlay_search.focus();
+			}
+			document.addEventListener("keyup", (e) => {
+				if (e.key === "Enter") {
+					overlay_search.classList.add("hidden");
+					overlay_shadow.classList.add("hidden");
+					overlay_search.value = "";
+				}
+			});
+		});
+
+		cards_container.forEach((card) => {
+			card.addEventListener("click", function () {
+				const userId = card.dataset.id;
+				window.location.href = `/info/${userId}`;
+			});
+		});
+	</script>
+</html>

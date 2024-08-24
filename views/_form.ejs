@@ -1,0 +1,97 @@
+<div class="form_inputs">
+	<div class="user_info">
+		<label for="name">Full Name</label>
+		<input
+			type="text"
+			required
+			name="name"
+			class="name"
+			placeholder="enter your name..."
+			value="<%= user ? user.name : '' %>"
+		/>
+	</div>
+	<div class="user_info">
+		<label for="location">Location</label>
+		<input
+			type="text"
+			name="location"
+			class="location"
+			placeholder="enter your location..."
+			value="<%= user ? user.location : '' %>"
+		/>
+	</div>
+</div>
+<div class="form_inputs">
+	<div class="user_info">
+		<label for="price">Price</label>
+		<input
+			type="number"
+			required
+			name="price"
+			class="price"
+			placeholder="enter your price..."
+			value="<%= user ? user.price : '' %>"
+		/>
+	</div>
+	<div class="user_info">
+		<label for="advance">Advance</label>
+		<input
+			type="number"
+			required
+			name="advance"
+			class="advance"
+			placeholder="enter your advance..."
+			value="<%= user ? user.advance : '' %>"
+		/>
+	</div>
+</div>
+<div class="professions">
+	<div class="selection">
+		<label for="teacher">Teacher</label>
+		<input type="radio" name="profession" value="teacher" class="teacher" <%=
+		user && user.profession === 'teacher' ? 'checked' : '' %> />
+	</div>
+	<div class="selection">
+		<label for="police">Police</label>
+		<input type="radio" name="profession" value="police" class="police" <%= user
+		&& user.profession === 'police' ? 'checked' : '' %> />
+	</div>
+	<div class="selection">
+		<label for="fireman">Fireman</label>
+		<input type="radio" name="profession" value="fireman" class="fireman" <%=
+		user && user.profession === 'fireman' ? 'checked' : '' %> />
+	</div>
+	<div class="selection">
+		<label for="lgu">LGU</label>
+		<input type="radio" name="profession" value="lgu" class="lgu" <%= user &&
+		user.profession === 'lgu' ? 'checked' : '' %> />
+	</div>
+</div>
+<input
+	type="text"
+	name="others"
+	class="others"
+	placeholder="enter profession"
+	value="<%= user ? user.profession : '' %>"
+/>
+<textarea
+	name="textarea"
+	class="textarea"
+	value="<%= user ? user.textarea : '' %>"
+>
+<%= user ? user.textarea : '' %></textarea
+>
+
+<div class="form_inputs">
+	<div class="user_info">
+		<label for="img">Upload Profile Picture</label>
+		<input
+			type="file"
+			name="img"
+			class="image"
+			id="image"
+			accept="image/*"
+			multiple
+		/>
+	</div>
+</div>
