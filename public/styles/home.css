@@ -106,3 +106,8 @@ main {
 		display: none;
 	}
 }
+@media (min-width: 1300px) {
+	main {
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	}
+}
